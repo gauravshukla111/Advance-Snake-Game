@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snake Game</title>
+<style>
+  body{
+    margin:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:sans-serif;
+    color:white;
+    flex-direction:column;
+  }
+
+  canvas{
+    background:#111;
+    border:2px solid #444;
+    box-shadow:0 0 20px rgba(255,255,255,0.1);
+  }
+
+  .ui{
+    margin-bottom:10px;
+    display:flex;
+    gap:20px;
+  }
+
+  button{
+    padding:8px 15px;
+    border:none;
+    background:white;
+    color:black;
+    cursor:pointer;
+    border-radius:5px;
+    font-weight:bold;
+  }
+
+  button:hover{
+    transform:scale(1.05);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="ui">
+  <div>Score: <span id="score">0</span></div>
+  <button onclick="restart()">Restart</button>
+</div>
+
+<canvas id="game" width="400" height="400"></canvas>
+
+<script src="app.js"></script>
+</body>
+</html>
