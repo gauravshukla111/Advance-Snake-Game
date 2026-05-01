@@ -2,34 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Snake Pro</title>
+<title>Snake X</title>
 
 <style>
 body{
   margin:0;
-  background:radial-gradient(circle,#0a0a0a,#000);
+  background: radial-gradient(circle at top, #0f172a, #020617);
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
-  font-family:sans-serif;
   color:white;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .container{
   text-align:center;
+  position:relative;
 }
 
 canvas{
-  background:#050505;
-  box-shadow:0 0 30px rgba(0,255,200,0.2);
-  border:1px solid rgba(255,255,255,0.1);
+  background:#020617;
+  border-radius:12px;
+  box-shadow:0 0 40px rgba(0,255,255,0.2);
 }
 
 .stats{
-  margin-bottom:10px;
   display:flex;
   justify-content:space-between;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.btn{
+  padding:8px 14px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#0ea5e9;
+  color:white;
+  transition:0.2s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
 }
 
 .overlay{
@@ -38,21 +62,18 @@ canvas{
   left:0;
   width:100%;
   height:100%;
+  background:rgba(0,0,0,0.9);
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
-  background:rgba(0,0,0,0.8);
-  font-size:24px;
-  display:none;
+  gap:15px;
 }
 
-button{
-  margin-top:10px;
-  padding:10px 20px;
-  background:white;
+.select{
+  padding:8px;
+  border-radius:6px;
   border:none;
-  cursor:pointer;
 }
 </style>
 </head>
@@ -60,17 +81,38 @@ button{
 <body>
 
 <div class="container">
-  <div class="stats">
-    <div>Score: <span id="score">0</span></div>
-    <div>High: <span id="high">0</span></div>
-  </div>
 
-  <canvas id="game" width="400" height="400"></canvas>
+<div class="stats">
+  <div>Score: <span id="score">0</span></div>
+  <div>High: <span id="high">0</span></div>
 </div>
 
-<div class="overlay" id="gameOver">
-  Game Over
-  <button onclick="restart()">Restart</button>
+<canvas id="game" width="400" height="400"></canvas>
+
+<div class="controls">
+  <button class="btn" onclick="changeSpeed(-1)">➖ Speed</button>
+  <button class="btn" onclick="changeSpeed(1)">➕ Speed</button>
+</div>
+
+<!-- START SCREEN -->
+<div class="overlay" id="startScreen">
+  <h2>🐍 Snake X</h2>
+
+  <select id="difficulty" class="select">
+    <option value="4">Easy</option>
+    <option value="7">Intermediate</option>
+    <option value="10">Hard</option>
+  </select>
+
+  <button class="btn" onclick="startGame()">Start Game</button>
+</div>
+
+<!-- GAME OVER -->
+<div class="overlay" id="gameOver" style="display:none">
+  <h2>Game Over</h2>
+  <button class="btn" onclick="restart()">Restart</button>
+</div>
+
 </div>
 
 <script src="app.js"></script>
