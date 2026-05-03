@@ -172,14 +172,14 @@ function gameOver(){
 }
 
 
-// 🔄 RESTART
+// RESTART
 function restart(){
   document.getElementById("gameOver").style.display="none";
   init();
 }
 
 
-// 🌗 THEME
+//THEME
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
