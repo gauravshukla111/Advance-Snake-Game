@@ -8,17 +8,17 @@ let snake, dir, food, score, speed, running;
 let highScore = localStorage.getItem("high") || 0;
 document.getElementById("high").innerText = highScore;
 
-// 🔊 SOUND EFFECTS
+// SOUND EFFECTS
 const eatSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-game-bonus-reached-2065.mp3");
 const overSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-player-losing-or-failing-2042.mp3");
 
-// 🎵 background music
+// background music
 const bgMusic = new Audio("https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3");
 bgMusic.loop = true;
 bgMusic.volume = 0.2;
 
 
-// 🔁 INIT
+// INIT
 function init(){
   snake = [{x:200,y:200}];
   dir = "RIGHT";
@@ -35,7 +35,7 @@ function init(){
 }
 
 
-// 🍎 FOOD RANDOM
+// FOOD RANDOM
 function spawnFood(){
   const colors = ["#ff4d4d","#ffa500","#ffcc00","#00ffcc"];
   return {
@@ -46,7 +46,7 @@ function spawnFood(){
 }
 
 
-// 🎮 CONTROLS
+// CONTROLS
 document.addEventListener("keydown", e=>{
   if(e.key==="ArrowUp" && dir!=="DOWN") dir="UP";
   else if(e.key==="ArrowDown" && dir!=="UP") dir="DOWN";
@@ -58,7 +58,7 @@ document.addEventListener("keydown", e=>{
 });
 
 
-// ▶️ START
+//  START
 function startGame(){
   document.getElementById("startScreen").style.display="none";
   init();
@@ -66,7 +66,7 @@ function startGame(){
 }
 
 
-// 🔁 LOOP
+//  LOOP
 let lastTime = 0;
 
 function loop(time){
@@ -79,7 +79,7 @@ function loop(time){
 }
 
 
-// 🔄 UPDATE
+// UPDATE
 function update(){
   let head = {x:snake[0].x, y:snake[0].y};
 
@@ -88,7 +88,7 @@ function update(){
   if(dir==="LEFT") head.x -= box;
   if(dir==="RIGHT") head.x += box;
 
-  // 💀 COLLISION
+  //  COLLISION
   if(
     head.x<0 || head.y<0 ||
     head.x>=400 || head.y>=400 ||
@@ -100,7 +100,7 @@ function update(){
 
   snake.unshift(head);
 
-  // 🍎 EAT
+  //  EAT
   if(head.x===food.x && head.y===food.y){
     score++;
     eatSound.play();
@@ -120,12 +120,12 @@ function update(){
 }
 
 
-// 🎨 DRAW
+// DRAW
 function draw(){
   ctx.fillStyle="#000";
   ctx.fillRect(0,0,400,400);
 
-  // 🐍 REALISTIC SNAKE
+  // real snake
   snake.forEach((s,i)=>{
     ctx.beginPath();
     ctx.fillStyle = i===0 ? "#fff" : "#888";
@@ -133,13 +133,13 @@ function draw(){
     ctx.fill();
   });
 
-  // 👀 eyes
+  // eyes
   const head = snake[0];
   ctx.fillStyle="black";
   ctx.fillRect(head.x+5,head.y+5,3,3);
   ctx.fillRect(head.x+12,head.y+5,3,3);
 
-  // 🍎 FRUIT
+  //  FRUIT
   ctx.beginPath();
   ctx.fillStyle = food.color;
   ctx.arc(food.x+10,food.y+10,8,0,Math.PI*2);
@@ -154,7 +154,7 @@ function draw(){
 }
 
 
-// ⚡ SPEED
+// SPEED
 function changeSpeed(val){
   speed += val;
 
@@ -163,7 +163,7 @@ function changeSpeed(val){
 }
 
 
-// 💀 GAME OVER
+// GAME OVER
 function gameOver(){
   running = false;
   bgMusic.pause();
