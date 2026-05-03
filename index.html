@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Snake X</title>
+<title>Snake X Premium</title>
 
 <style>
 body{
   margin:0;
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
   color:white;
   font-family: 'Segoe UI', sans-serif;
+  transition:0.3s;
+}
+
+body.light{
+  background:#f5f5f5;
+  color:black;
 }
 
 .container{
@@ -22,16 +28,15 @@ body{
 }
 
 canvas{
-  background:#020617;
+  background:#000;
   border-radius:12px;
-  box-shadow:0 0 40px rgba(0,255,255,0.2);
+  box-shadow:0 0 40px rgba(255,255,255,0.1);
 }
 
 .stats{
   display:flex;
   justify-content:space-between;
   margin-bottom:10px;
-  font-size:14px;
 }
 
 .controls{
@@ -47,13 +52,8 @@ canvas{
   border-radius:6px;
   cursor:pointer;
   font-weight:bold;
-  background:#0ea5e9;
-  color:white;
-  transition:0.2s;
-}
-
-.btn:hover{
-  transform:scale(1.1);
+  background:white;
+  color:black;
 }
 
 .overlay{
@@ -75,12 +75,22 @@ canvas{
   border-radius:6px;
   border:none;
 }
+
+.theme{
+  position:absolute;
+  top:-40px;
+  right:0;
+  cursor:pointer;
+  font-size:20px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
+<div class="theme" onclick="toggleTheme()">🌙</div>
 
 <div class="stats">
   <div>Score: <span id="score">0</span></div>
@@ -94,7 +104,7 @@ canvas{
   <button class="btn" onclick="changeSpeed(1)">➕ Speed</button>
 </div>
 
-<!-- start section card -->
+<!-- START -->
 <div class="overlay" id="startScreen">
   <h2>🐍 Snake X</h2>
 
@@ -107,7 +117,7 @@ canvas{
   <button class="btn" onclick="startGame()">Start Game</button>
 </div>
 
-<!-- game over section -->
+<!-- GAME OVER -->
 <div class="overlay" id="gameOver" style="display:none">
   <h2>Game Over</h2>
   <button class="btn" onclick="restart()">Restart</button>
