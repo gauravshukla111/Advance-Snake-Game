@@ -9,7 +9,7 @@ let highScore = localStorage.getItem("high") || 0;
 document.getElementById("high").innerText = highScore;
 
 
-// 🔁 Game init (reset sab kuch)
+// Game init (reset sab kuch)
 function init(){
   snake = [{x:200,y:200}];
   dir = "RIGHT";
@@ -25,7 +25,7 @@ function init(){
 }
 
 
-// 🍎 random food spawn
+// random food spawn
 function spawnFood(){
   return {
     x: Math.floor(Math.random()*20)*box,
@@ -34,7 +34,7 @@ function spawnFood(){
 }
 
 
-// 🎮 keyboard controls
+// keyboard controls
 document.addEventListener("keydown", e=>{
   if(e.key==="ArrowUp" && dir!=="DOWN") dir="UP";
   else if(e.key==="ArrowDown" && dir!=="UP") dir="DOWN";
@@ -48,7 +48,7 @@ document.addEventListener("keydown", e=>{
 });
 
 
-// ▶️ game start
+//  game start
 function startGame(){
   document.getElementById("startScreen").style.display="none";
   init();
@@ -56,7 +56,7 @@ function startGame(){
 }
 
 
-// 🔁 main loop
+//  main loop
 let lastTime = 0;
 
 function loop(time){
@@ -70,7 +70,7 @@ function loop(time){
 }
 
 
-// 🔄 update logic
+//  update logic
 function update(){
   let head = {x:snake[0].x, y:snake[0].y};
 
@@ -79,7 +79,7 @@ function update(){
   if(dir==="LEFT") head.x -= box;
   if(dir==="RIGHT") head.x += box;
 
-  // ❌ collision check
+  // collision check
   if(
     head.x<0 || head.y<0 ||
     head.x>=400 || head.y>=400 ||
@@ -91,7 +91,7 @@ function update(){
 
   snake.unshift(head);
 
-  // 🍎 food eat
+  //  food eat
   if(head.x===food.x && head.y===food.y){
     score++;
     document.getElementById("score").innerText = score;
@@ -109,7 +109,7 @@ function update(){
 }
 
 
-// 🎨 drawing
+//drawing
 function draw(){
   ctx.fillStyle="#020617";
   ctx.fillRect(0,0,400,400);
@@ -133,7 +133,7 @@ function draw(){
 }
 
 
-// ⚡ speed control buttons
+//speed control buttons
 function changeSpeed(val){
   speed += val;
 
@@ -142,14 +142,14 @@ function changeSpeed(val){
 }
 
 
-// 💀 game over
+// game over
 function gameOver(){
   running = false;
   document.getElementById("gameOver").style.display="flex";
 }
 
 
-// 🔄 restart
+// restart
 function restart(){
   document.getElementById("gameOver").style.display="none";
   init();
